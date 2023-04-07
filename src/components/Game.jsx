@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-const MovementTest = () => {
+const Game = () => {
   const square = useRef();
   const x = useRef(0);
   const y = useRef(0);
@@ -67,7 +67,7 @@ const MovementTest = () => {
         default:
           break;
       }
-      gsap.to(square.current, { duration: 2, x: x.current, y: y.current });
+      gsap.to(square.current, { duration: 1, x: x.current, y: y.current });
       console.log(stepX.current);
     };
 
@@ -95,4 +95,4 @@ const MovementTest = () => {
   );
 };
 
-export default MovementTest;
+export default Game;

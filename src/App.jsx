@@ -1,12 +1,10 @@
 import './App.css';
-// import HelloGsap from './components/gsap/HelloGsap';
-import MovementTest from './components/gsap/MovementTest';
+import Game from './components/Game';
 
 function App() {
   return (
     <div>
-      {/* <HelloGsap /> */}
-      <MovementTest />
+      <Game />
     </div>
   );
 }
