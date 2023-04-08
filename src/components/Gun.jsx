@@ -1,10 +1,12 @@
 import useRotateGun from '../hooks/rotateGun';
 import { useRef } from 'react';
 import useWeaponChange from '../hooks/useWeaponChange';
+import useShooting from '../hooks/useShooting';
 
-const Gun = () => {
+const Gun = ({ squareRef, setBullets }) => {
   const gunRef = useRef(null);
   useRotateGun(gunRef);
+  useShooting(gunRef, squareRef, setBullets);
 
   const weapon = useWeaponChange();
 
@@ -28,7 +30,6 @@ const Gun = () => {
           src={weaponImages[weapon]}
         />
       </div>
-      {/* <button onClick={() => setGun('M4A1')}>Change Gun</button> */}
     </>
   );
 };
