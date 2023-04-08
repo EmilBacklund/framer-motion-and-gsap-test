@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Square from './components/Square';
-import GameBoard from '/components/GameBoard';
+import GameBoard from './components/GameBoard';
 import Gun from './components/Gun';
 import useMovement from './hooks/useMovement';
 import Menu from './components/Menu';
