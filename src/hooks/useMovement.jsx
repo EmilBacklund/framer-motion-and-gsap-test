@@ -1,15 +1,11 @@
-import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
 
-const Game = () => {
-  const square = useRef();
-  const x = useRef(0);
-  const y = useRef(0);
-  const container = useRef();
-  const stepX = useRef(0);
-  const stepY = useRef(0);
+const useMovement = (square, container, stepX, stepY) => {
   const xCount = useRef(0);
   const yCount = useRef(0);
+  const x = useRef(0);
+  const y = useRef(0);
 
   const updateStepSize = () => {
     if (container.current) {
@@ -17,22 +13,6 @@ const Game = () => {
       stepY.current = container.current.offsetHeight / 6;
     }
   };
-
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver(() => {
-      updateStepSize();
-    });
-
-    if (container.current) {
-      resizeObserver.observe(container.current);
-    }
-
-    return () => {
-      if (container.current) {
-        resizeObserver.unobserve(container.current);
-      }
-    };
-  }, [container]);
 
   useEffect(() => {
     updateStepSize();
@@ -80,19 +60,21 @@ const Game = () => {
     };
   }, []);
 
-  return (
-    <>
-      <div
-        ref={container}
-        className="bg-gray-900 h-screen w-full flex overflow-hidden"
-      >
-        <div
-          ref={square}
-          className="w-1/12 h-1/6 bg-blue-500 rounded-full"
-        ></div>
-      </div>
-    </>
-  );
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      updateStepSize();
+    });
+
+    if (container.current) {
+      resizeObserver.observe(container.current);
+    }
+
+    return () => {
+      if (container.current) {
+        resizeObserver.unobserve(container.current);
+      }
+    };
+  }, [container]);
 };
 
-export default Game;
+export default useMovement;
