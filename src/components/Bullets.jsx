@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-const Bullets = ({ x, y, angle }) => {
+const Bullets = ({ id, x, y, angle, bulletRefsMap }) => {
   const bulletRef = useRef(null);
 
   useEffect(() => {
+    bulletRefsMap[id] = bulletRef;
+
     gsap.fromTo(
       bulletRef.current,
       { x: 0, y: 0 },
@@ -13,10 +15,12 @@ const Bullets = ({ x, y, angle }) => {
         y: Math.sin(angle * (Math.PI / 180)) * 2000,
         duration: 2,
         ease: 'power2.out',
-        onComplete: () => bulletRef.current.remove(),
+        onComplete: () => {
+          bulletRef.current.dataset.finished = 'true';
+        },
       }
     );
-  }, [angle]);
+  }, [angle, bulletRefsMap, id]);
 
   const bulletStyling = {
     left: `${x}px`,

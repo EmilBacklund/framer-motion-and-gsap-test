@@ -3,10 +3,25 @@ import { useRef } from 'react';
 import useWeaponChange from '../hooks/useWeaponChange';
 import useShooting from '../hooks/useShooting';
 
-const Gun = ({ squareRef, setBullets }) => {
+const Gun = ({
+  squareRef,
+  setBullets,
+  enemies,
+  setEnemies,
+  bulletRefsMap,
+  setBulletRefsMap,
+}) => {
   const gunRef = useRef(null);
   useRotateGun(gunRef);
-  useShooting(gunRef, squareRef, setBullets);
+  useShooting(
+    gunRef,
+    squareRef,
+    setBullets,
+    enemies,
+    setEnemies,
+    bulletRefsMap,
+    setBulletRefsMap
+  );
 
   const weapon = useWeaponChange();
 
