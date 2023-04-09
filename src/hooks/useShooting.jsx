@@ -81,7 +81,7 @@ const useShooting = (
       );
     };
 
-    const collisionCheckInterval = setInterval(checkCollision, 100);
+    const collisionCheckInterval = setInterval(checkCollision, 10);
 
     return () => {
       clearInterval(collisionCheckInterval);
@@ -98,10 +98,12 @@ const useShooting = (
             return false;
           }
           if (bulletRef.current.dataset.finished === 'true') {
-            if (bulletRef.current.parentElement) {
-              bulletRef.current.parentElement.removeChild(bulletRef.current);
-            }
-            delete bulletRefsMap[bullet.id];
+            setTimeout(() => {
+              if (bulletRef.current && bulletRef.current.parentElement) {
+                bulletRef.current.parentElement.removeChild(bulletRef.current);
+              }
+              delete bulletRefsMap[bullet.id];
+            }, 500); // Delay the bullet removal process by 500ms
             return false;
           }
           return true;

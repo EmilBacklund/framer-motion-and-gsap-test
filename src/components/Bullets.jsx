@@ -16,7 +16,9 @@ const Bullets = ({ id, x, y, angle, bulletRefsMap }) => {
         duration: 2,
         ease: 'power2.out',
         onComplete: () => {
-          bulletRef.current.dataset.finished = 'true';
+          if (bulletRef.current) {
+            bulletRef.current.dataset.finished = 'true';
+          }
         },
       }
     );
